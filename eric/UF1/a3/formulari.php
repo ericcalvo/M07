@@ -1,6 +1,19 @@
 <?
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+echo "Nom: ", print_r($_REQUEST["mytext"]);
+   echo "<br>";
 
+   echo "Has seleccionat la radio:", print_r($_REQUEST["myradio"]);
+   echo "<br>";
+
+   echo "La checkbox seleccionada es:", print_r($_REQUEST["mycheckbox"]);
+   echo "<br>";
+
+   echo "Item seleccionat: ", print_r($_REQUEST["myselect"]);
+   echo "<br>";
+
+   print_r($_REQUEST["mytextarea"]);
+   echo "<br>";
 
 } else {
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,9 +26,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <body>
         <div style="margin:30px 10%;">
             <h3>My form</h3>
-            <form action="processa_dades.php" method="post" id="myform" name="myform">
-                <label>Text</label> <input type="text" value="" size="30" maxlength="100" name="mytext" id="" /><br /><br />
-                <input type="radio" name="myradio" value="1" /> First radio
+            <form enctype="multipart/form-data" action="formulari.php" method="post" id="myform" name="myform">
+                <label>Introdueix nom</label> <input type="text" value="" size="30" maxlength="100" name="mytext" id="" /><br /><br />
+                <input type="radio" name="myradio" value="0" /> First radio
                 <input type="radio" checked="checked" name="myradio" value="2" /> Second radio<br /><br />
                 <input type="checkbox" name="mycheckbox[]" value="1" /> First checkbox
                 <input type="checkbox" checked="checked" name="mycheckbox[]" value="2" /> Second checkbox<br /><br />
