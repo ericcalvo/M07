@@ -2,16 +2,18 @@
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "Nom: ", print_r($_REQUEST["mytext"]);
-    echo "<br/><br/>";
+    echo "<br/>";
 
     echo "Has seleccionat la radio:", print_r($_REQUEST["myradio"]);
-    echo "<br/><br/>";
+    echo "<br/>";
 
-    echo "La checkbox seleccionada es:", print_r($_REQUEST["mycheckbox"]);
-    echo "<br/><br/>";
+    if(isset($_REQUEST["mycgeckbox"])){
+        echo "La checkbox seleccionada es:", print_r($_REQUEST["mycheckbox"]);
+    }
+    echo "<br/>";
 
     echo "Item seleccionat: ", print_r($_REQUEST["myselect"]);
-    echo "<br/><br/>";
+    echo "<br/>";
 
     echo "Text: ", print_r($_REQUEST["mytextarea"]);
 
