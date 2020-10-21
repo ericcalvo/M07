@@ -1,16 +1,20 @@
 <?php
     session_start();
     require "llibreria.php";
+
     if ($_SERVER['REQUEST_METHOD']=='POST'){
-        
-
-
-
-
-        if ($_REQUEST["email"]=="eric@gmail.com" && $_REQUEST["contrasenya"]=="ericcalvo"){
-            $_SESSION["usu"]=$_REQUEST["email"];
-            $_SESSION["contra"]=$_REQUEST["contrasenya"];
-            header("Location: login2.php");
+        $_SESSION["usu"]=$_REQUEST["email"];
+        $_SESSION["contra"]=$_REQUEST["contrasenya"];
+        $comprovacioEmail = validacioEmail($_SESSION["usu"]);
+        $comprovacioContra = validacioContra($_SESSION["contra"]);
+        if ($comprovacioEmail == TRUE &&  $comprovacioContra == TRUE){
+            if ($_REQUEST["email"]=="eric@gmail.com" && $_REQUEST["contrasenya"]=="ericcalvo"){
+                header("Location: login2.php");
+            }else{
+                echo "Usuari o Contrasenya incorrecta";
+            }
+        }else {
+            echo "Contrasenya o mail sense format indicat";
         }
     }
 ?>
@@ -22,7 +26,7 @@
         </head>
         <body>
             <form enctype="multipart/form-data" action="login.php" method="post">
-                <p>Gmail: <input type="text" name="email"></p>
+                <p>Email: <input type="text" name="email"></p>
                 <p>Contrasenya: <input type="password" name="contrasenya"></p>
                 <button name="enviar" type="submit">Enviar</button></br></br>
 

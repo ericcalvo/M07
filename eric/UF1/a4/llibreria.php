@@ -1,15 +1,17 @@
-<? php
+<?php
 function validacioEmail($comprovacioEmail){
-    $email = "eric@gmail.com"
-    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-        echo("$email is a valid email address");
+    if(!filter_var($comprovacioEmail, FILTER_VALIDATE_EMAIL)){
+        return FALSE;
     }else {
-        echo("$email is not a valid email address");
+        return TRUE;
     }
 }
 
-function validacioContra($ComprovacioContra){
-    
+function validacioContra($comprovacioContra){
+    if(!preg_match("/^[a-zA-Z0-9]+$/", $comprovacioContra)){
+        return FALSE;
+    }else{
+        return TRUE;
+    }
 }
-
 ?>
