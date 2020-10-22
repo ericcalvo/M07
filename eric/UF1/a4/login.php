@@ -5,12 +5,16 @@
     if ($_SERVER['REQUEST_METHOD']=='POST'){
         $_SESSION["usu"]=$_REQUEST["email"];
         $_SESSION["contra"]=$_REQUEST["contrasenya"];
+        setcookie("usercookie", sha1(md5($_REQUEST["email"])), time() + 365 * 24 * 60 * 60);
+        setcookie("passcookie", sha1(md5($_REQUEST["contrasenya"])), time() + 365 * 24 * 60 * 60);
+        
         $comprovacioEmail = validacioEmail($_SESSION["usu"]);
         $comprovacioContra = validacioContra($_SESSION["contra"]);
         if ($comprovacioEmail == TRUE &&  $comprovacioContra == TRUE){
-            if ($_REQUEST["email"]=="eric@gmail.com" && $_REQUEST["contrasenya"]=="ericcalvo"){
+            if ($_COOKIE["usercookie"]== sha1(md5("eric@gmail.com")) && $_COOKIE["passcookie"]==sha1(md5("ericcalvo"))){
                 header("Location: login2.php");
-            }else{
+            }
+            else{
                 echo "Usuari o Contrasenya incorrecta";
             }
         }else {
@@ -28,6 +32,7 @@
             <form enctype="multipart/form-data" action="login.php" method="post">
                 <p>Email: <input type="text" name="email"></p>
                 <p>Contrasenya: <input type="password" name="contrasenya"></p>
+                <p>Aceptar cookies? <input type="checkbox" name="Aceptar"></p>
                 <button name="enviar" type="submit">Enviar</button></br></br>
 
             </form>

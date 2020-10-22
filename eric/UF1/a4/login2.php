@@ -1,5 +1,8 @@
 <?php
     session_start();
+if($_SERVER["REQUEST_METHOD"]=='POST'){
+    session_destroy();
+}
     if (isset($_SESSION["usu"]) or isset($_SESSION["contra"])){
         echo $_SESSION["usu"];
         echo "</br>";
@@ -9,6 +12,7 @@
     }
 
 ?>
+
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -16,7 +20,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
         <body>
-            </br>
-            <a href="Logout.php">log out</a>
+            <form action="login2.php" method="post">
+                <input type="submit" value="Log Out">
+            </form>
         </body>
     </html>
